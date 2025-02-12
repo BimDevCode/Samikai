@@ -1,0 +1,12 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.Text;
+global using System.Text.Json;
+global using Microsoft.EntityFrameworkCore;
+global using Conbent.EventBus.Abstractions;
+global using Conbent.EventBus.Events;
+global using Conbent.Service.Defaults;
+global using Webhooks.API.Infrastructure;
+global using Webhooks.API.IntegrationEvents;
+global using Webhooks.API.Model;
+global using Webhooks.API.Services;
+global using Webhooks.API;

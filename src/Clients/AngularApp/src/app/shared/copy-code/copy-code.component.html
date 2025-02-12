@@ -1,0 +1,9 @@
+<div >
+  <div #codeBlock class="position-relative">
+    <button pButton  type="button" icon="pi {{copied ? 'pi pi-check' : 'pi pi-copy'}}"  class="p-button-text c-button" (click)="copyText()"></button>
+    <pre  style="border-radius: 10px;"> 
+      <code [innerHTML]="code">
+      </code>
+    </pre>
+  </div>
+</div>

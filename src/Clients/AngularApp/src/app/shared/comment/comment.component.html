@@ -1,0 +1,52 @@
+<!-- src/app/components/comment/comment.component.html -->
+<div class="card" *ngIf="article">
+  <div>
+      <div class="text-center ">
+        <h1 class="section-header-title mt-1">Comments</h1>
+      </div>
+  </div>
+  <div class="mb-6" *ngIf="commentsCount !== 0">
+    <div class="z-under-layout">
+        <ul class="list-none m-0 p-0 comment" *ngFor="let comment of comments$ | async" >
+            <li class="surface-border">
+                <div class="flex align-items-center justify-content-between mb-3">
+                    <div class="flex align-items-center">
+                        <div class="flex flex-column">
+                            <span ><app-account-chip authorNameSurname="{{comment.author}}"/></span>
+                            <span class="text-500 font-medium text-sm">({{comment.createdAt | date:'short' }})</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-600 p-0 m-0 line-height-3">{{ comment.content }}</p>
+            </li>
+            <p-divider type="dashed" class="custom-divider-zero-margin"></p-divider>
+        </ul>
+    </div>
+  </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+    <div class="grid formgrid mt-1">
+      <div class="w-full d-flex">
+        <div class="mb-1">
+          <small id="username-help">
+            Enter your username or uses anonymous if you want to be anonymous.
+          </small>
+        </div>
+        <div class="row">
+          <p class="mb-0 text-300">Authored by</p>
+        </div>
+        <div class="row">
+          <input id="author" formControlName="author" ngClass="mt-1" placeholder="Place your name here" pInputText [value]="profileName" [readOnly]="currentUser !== null"
+          aria-describedby="username-help" />
+        </div>
+        <div class="row h-10rem mt-2">
+          <textarea id="content" ngClass="h-full w-full" formControlName="content" placeholder="Your Message" pInputTextarea></textarea>
+        </div>
+        <div class="row mt-2">
+          <button pButton pRipple type="submit" label="Add Comment"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+

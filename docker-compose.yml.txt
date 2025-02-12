@@ -1,0 +1,166 @@
+services:
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Tootyfrooty99
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+     
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   ports:
+  #     - "5672:5672"  # RabbitMQ server
+  #     - "15672:15672"  # Management console
+  #   volumes:
+  #     - "rabbitmq_data:/var/lib/rabbitmq"
+  #   environment:
+  #     - RABBITMQ_HOST=rabbitmq
+  #   networks:
+  #     - app-network
+   
+  # redis:
+  #   image: redis:latest
+  #   ports:
+  #     - "6379:6379"   
+  #   networks:
+  #     - app-network  
+
+  conbent.article.api:
+    image: ${DOCKER_REGISTRY-}conbentarticleapi
+    build:
+      context: .
+      dockerfile: src/Microservices/Article/Conbent.Article.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentArticles;Include Error Detail=true;
+      - ASPNETCORE_HTTPS_PORTS=7069
+      - ASPNETCORE_URLS=https://+:7069;
+      - RABBITMQ_HOST=rabbitmq
+    depends_on:
+      - postgresql
+    ports:
+      - "7069:7069"
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw # Mount the debugger directory
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - storage:/storage
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certificates:/etc/certificates
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - app-network
+
+  # conbent.proxy:
+  #   image: ${DOCKER_REGISTRY-}conbentproxy
+  #   build:
+  #     context: .
+  #     dockerfile: src/Microservices/Gateways/Conbent.AngularClientGateway/Dockerfile
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_HTTPS_PORTS=7109
+  #     - ASPNETCORE_URLS=https://+:7109;
+  #   depends_on:
+  #     - redis
+  #   ports:
+  #     - "7109:7109"
+  #   volumes:
+  #     - ~/.vsdbg:/remote_debugger:rw # Mount the debugger directory
+  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+  #     - storage:/storage
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - certificates:/etc/certificates
+  #     - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #     - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  #   networks:
+  #     - app-network
+
+  conbent.identity.api:
+    image: ${DOCKER_REGISTRY-}conbentidentityapi
+    build:
+      context: .
+      dockerfile: src/Microservices/Accounts/Identity.API/Dockerfile
+    ports:
+      - "5223:5223"
+    environment:
+      - ConnectionStrings__IdentityDB=Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentUsers;Include Error Detail=true;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ_HOST=rabbitmq
+      - ASPNETCORE_HTTP_PORTS=5223
+    depends_on:
+      - postgresql
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw # Mount the debugger directory
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+    networks:
+      - app-network
+
+  conbent.userinteraction.api:
+    image: ${DOCKER_REGISTRY-}conbentuserinteractionapi
+    build:
+      context: .
+      dockerfile: src/Microservices/Accounts/UserInteraction.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__InteractiveUserDB=Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentUserInteractions;Include Error Detail=true;
+      - ASPNETCORE_HTTP_PORTS=5203
+      - ASPNETCORE_URLS=https://+:5203;
+      - RABBITMQ_HOST=rabbitmq
+    ports:
+      - "5203:5203"
+    depends_on:
+      - postgresql
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw # Mount the debugger directory
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - storage:/storage
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certificates:/etc/certificates
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - app-network
+
+  # angular-app:
+  #   build:
+  #     context: .
+  #     dockerfile: src/Clients/AngularApp/Dockerfile
+  #   ports:
+  #     - "5211:5211"  # Ensure the port matches your Angular serve command
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - NODE_ENV=development
+  #     - CHOKIDAR_USEPOLLING=true
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    
+volumes:
+  storage:
+  certificates:
+  # rabbitmq_data:
+  #    driver: local
+  postgres_data:
+    driver: local
+
+secrets:
+  server.cert:
+    file: ./server.cert
+  server.key:
+    file: ./server.key
+
+# xcopy "W:\Obsidian\Conbent\Conbent Development\Content" "C:\Startup\GitConbent\src\Microservices\Article\Conbent.Article.Infrastructure\Context\ArticleSource" /E /I /H

@@ -1,0 +1,28 @@
+<div class="container mt-4 next-step-container">
+    <div class="row">
+      <div class="col text-center">
+        <h1 class="section-header-title" >
+          NEXT STEPS
+        </h1>
+      </div>
+    </div>
+    <div class="row mt-4 align-items-center justify-content-center "
+    >
+        <div class="col-md-6">
+          <div class="h-100 p-4 mt-2 mb-4 left-card fade-in-element-left "
+          appIntersectionObserver (intersectionVisible)="fadeInOnScrollLeft($event)">
+            <h2>Explore projects</h2>
+            <p>Explore our portfolio of developed projects that we have made publicly available on GitHub. Fill free to follow the link and leave all your thoughts!</p>
+            <button pButton class="custom-rounded" type="button" routerLink="/project">Projects</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-4 mt-4 mb-2 right-card fade-in-element-right "
+          appIntersectionObserver (intersectionVisible)="fadeInOnScrollRight($event)">
+            <h2 class="">Explore articles</h2>
+            <p>Explore an articles we found interesting and decided to share it with you. There you can find code to copy and small descriptions. All are minimalistic.</p>
+            <button pButton class="blue-color custom-rounded " type="button" routerLink="/academy">Articles</button>
+          </div>
+        </div>
+      </div>
+</div>

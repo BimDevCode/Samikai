@@ -1,0 +1,22 @@
+.ngx-pagination {
+    /* Change the color of the pagination controls */
+    color: #333;
+    background-color: var(--brown-color);
+}
+
+.ngx-pagination .current {
+    /* Change the color of the current page number */
+    color: #fff;
+    background-color: var(--brown-color);
+}
+
+.ngx-pagination .disabled {
+    /* Change the color of the disabled controls */
+    color: #ccc;
+    background-color: var(--brown-color);
+
+}
+
+.pagination .pagination-page ::after{
+    background-color: var(--brown-color);
+}

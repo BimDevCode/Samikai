@@ -1,0 +1,43 @@
+<div class="align-items-center p-2 " #articleCard>
+    <div class="card p-2 grid academy-card flex" #card *ngIf="article">
+        <a (click)="routeToArticle()"  class="w-full h-full cursor-pointer">
+            <div class="m-0 p-1 w-full " style="min-width: 4em; "  [ngClass]="{'col-5': isSmallCard}">
+                <div  class="image-banner">
+                    <img #imgCard  alt="{{article.name}}" >
+                </div>
+            </div>
+            <div class="p-1 text-center" style="min-width: 3em;">
+                <h1 class="card-title m-0">
+                    {{article.name}}
+                </h1>
+            </div>
+            <p-divider type="dashed" class="custom-divider"/>
+        </a>
+            <div class="p-1 flex flex-wrap w-full">
+                <div class="flex-1">
+                    <div class="mt-1">
+                        <span class="mb-2 relevant-text">Author: {{article.authorNameSurname}}</span>
+                    </div>
+                    <div class="mt-1">
+                        <span class="mb-2 relevant-text">Date: {{article.createDateTime}}</span>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="flex flex-wrap gap-1 align-items-start justify-content-start mb-1 mt-2">
+                        <div class="flex align-items-center" *ngFor="let tag of tagNames">
+                            <p-button styleClass="p-button-link p-1"  class="ml-1 tag-button" label="{{tag}}" icon="pi pi-tag mr-2" (onClick)="onTagSelected($event)"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <a (click)="routeToArticle()" class="w-full h-full cursor-pointer">
+            <p-divider class="custom-divider" type="dashed" [ngStyle]="{'display': isSmallCard ? 'none' : 'block'}"/>
+            <div class="p-1" style="min-width: 3em;" [ngStyle]="{'display': isSmallCard ? 'none' : 'block'}" >
+                <div style="height: 100%;max-height: 100px; overflow: hidden;">
+                    <div class="text-part" [innerHTML]="article.texts.join('') | sanitizeHtml"></div>
+                </div>   
+            </div>
+        </a>
+    </div>
+</div>
+

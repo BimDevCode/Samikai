@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="flex align-items-center">
+        <p-avatar label="{{shortAuthorName}}" styleClass="mr-2 " size="large" shape="circle"></p-avatar>
+        <h1>{{accountName}}</h1>
+    </div>
+    <p-divider/>
+    <div class="w-full">
+        <p-fieldset legend="Personal Information" [toggleable]="true">
+            <div class="flex align-items-center">
+                <p class="m-1">Dispaly Name:</p>
+                <p class="m-1">{{currentUser?.profile?.nickname}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Name:</p>
+                <p class="m-1">{{currentUser?.profile?.given_name}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Surname:</p>
+                <p class="m-1">{{currentUser?.profile?.family_name}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Middle Name:</p>
+                <p class="m-1">{{currentUser?.profile?.middle_name}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Gender:</p>
+                <p class="m-1">{{currentUser?.profile?.gender}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Birthday:</p>
+                <p class="m-1">{{currentUser?.profile?.birthdate}}</p>
+            </div>
+        </p-fieldset>
+        <p-fieldset legend="Contact Information" styleClass="mt-3" [toggleable]="true">
+            <div class="flex align-items-center">
+                <p class="m-1">Email:</p>
+                <p class="m-1">{{currentUser?.profile?.email}}</p>
+            </div>
+            <p-divider/>
+            <div class="flex align-items-center">
+                <p class="m-1">Adress:</p>
+                <p class="m-1">{{currentUser?.profile?.address}}</p>
+            </div>
+        </p-fieldset>
+        <!-- <p class="text-white " style="font-size: medium;">Personal Information</p>
+        <div class="ml-3">
+            <div class="flex align-items-center">
+                <p>Name: </p>
+                <p>{{currentUser?.profile?.name}}</p>
+            </div>
+        </div> -->
+
+    </div>
+</div>

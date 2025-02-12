@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+    kompose.version: 1.33.0 (3ce457399)
+  labels:
+    io.kompose.service: conbent-article-api
+  name: conbent-article-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: conbent-article-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+        kompose.version: 1.33.0 (3ce457399)
+      labels:
+        io.kompose.network/azure-app-network: "true"
+        io.kompose.service: conbent-article-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: ASPNETCORE_HTTPS_PORTS
+              value: "7069"
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+              value: ConbentPassword
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+              value: /cert/conbentapp.pfx
+            - name: ASPNETCORE_URLS
+              value: https://+:7069;
+            - name: ConnectionStrings__DefaultConnection
+              value: Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentArticles;Include Error Detail=true;
+            - name: ConnectionStrings__RedisConnection
+              value: redis:6379,password=password21
+            - name: RABBITMQ_HOST
+              value: rabbitmq
+          image: conbentcontainer.azurecr.io/conbent.article.api:latest
+          livenessProbe:
+            exec:
+              command:
+                - curl
+                - -k
+                - -f
+                - https://localhost:7069/health
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 10
+          name: conbent-article-api
+          ports:
+            - containerPort: 7069
+              hostPort: 7069
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /root/.aspnet/https
+              name: conbent-article-api-cm0
+              readOnly: true
+            - mountPath: /remote_debugger
+              name: conbent-article-api-cm1
+            - mountPath: /storage
+              name: storage
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            name: conbent-article-api-cm0
+          name: conbent-article-api-cm0
+        - configMap:
+            name: conbent-article-api-cm1
+          name: conbent-article-api-cm1
+        - name: storage
+          persistentVolumeClaim:
+            claimName: storage
+      imagePullSecrets:
+      - name: acr-secret

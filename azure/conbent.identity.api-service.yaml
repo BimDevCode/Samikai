@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+    kompose.version: 1.33.0 (3ce457399)
+  labels:
+    io.kompose.service: conbent-identity-api
+  name: conbent-identity-api
+spec:
+  type: LoadBalancer
+  ports:
+    - name: "5223"
+      port: 5223
+      targetPort: 5223
+  selector:
+    io.kompose.service: conbent-identity-api

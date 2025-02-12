@@ -1,0 +1,44 @@
+
+  <div class="card">
+    <div>
+      <div class="text-center ">
+        <h1 class="section-header-title mt-1">AVAILABLE OPEN SOURCE EXAMPLES</h1>
+      </div>
+    </div>
+    <div>
+      <p-dataView #dv [value]="projects" layout="grid" >
+        <ng-template let-items pTemplate="grid">
+            <div class="col-12" >
+                <div class="grid grid-nogutter">
+                    <div class="col-12 md:col-4" *ngFor="let item of items; let first = first">
+                        <div class="card m-3 border-1 surface-border hover-animation">
+                          <a [routerLink]="item.route" class="w-full h-full" (click)="onProjectSelected(item)" >
+                            <div class="flex flex-column align-items-center text-center mb-3">
+                              <div class="text-2xl font-bold">{{item.name}}</div>
+                              <img [src]="item.image" [alt]="item.name" class="w-9 my-3 mx-0" style="border-radius: 10px;"/>
+                              <div class="mb-3">{{item.description}}</div>
+                          </div>
+                          <div class=" align-items-center justify-content-between w-full">
+                              <p-button label="Read More" routerLinkActive="router-link-active"  styleClass="w-full" [disabled]="item.issueStatus === 'OUTOFSTOCK'"></p-button>
+                          </div>
+
+                          <div class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2 mt-4">
+                            <div class="flex align-items-center">
+                                <i class="pi pi-tag mr-2"></i>
+                                <span class="font-semibold">{{item.category}}</span>
+                            </div>
+                            <span [class]="'product-badge status-' + item.issueStatus">{{item.issueStatus}}</span>
+                        </div>
+                          </a>
+
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+  </div>
+
+
+

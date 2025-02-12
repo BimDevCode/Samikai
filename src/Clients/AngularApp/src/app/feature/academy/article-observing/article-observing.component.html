@@ -1,0 +1,75 @@
+<!-- <div class="vertical-alignment">
+    <button (click)="toggleMenu()" class="btn button-square custom-button-onlight-reward">{{buttonText}}</button>
+</div> -->
+
+<div class="grid">
+    <div class="col-12">
+        <div>
+            <div class="text-center ">
+              <h1 class="section-header-title mt-1 mb-1">SELECT ARTICLE</h1>
+              <small class="text-800 font-medium text-sm">Total Articles: {{totalCount}}</small>
+            </div>
+          </div> 
+        <p-dataView #dv [paginator]="false" [value]="articleEntities" filterBy="createDateTime" [sortField]="sortField" [sortOrder]="sortOrder" layout="list" emptyMessage="No articles found">
+            <ng-template pTemplate="header">
+                <div class="flex flex-column md:flex-row md:justify-content-between gap-2 align-items-center" style="flex-wrap: wrap;">
+                    <p-dropdown [options]="sortOptions" placeholder="Sort Articles" [disabled]="totalCount ===0"
+                        (onChange)="onSortChange($event)"></p-dropdown>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input type="search" pinputtext="" placeholder="Search by Name" class="p-inputtext p-component p-element" (input)="onFilter(dv, $event)" />
+                    </span>
+                    <div class="filters" style="left: 0; ">
+                        <button pButton style="min-width: 80px;" type="button" label="Filter Tag:" (click)="toggleMenu()" [disabled]="totalCount ===0"></button>
+                        <p-chip styleClass="ml-2" [style]="{height:'100%'}" label="{{selectedFilter}}" ></p-chip>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template let-articles pTemplate="listItem">
+                <div class="col-12" *ngFor="let item of articles; let first = first">
+                    <app-article-card-item [article]="item" (nodeSelected)="nodeSelect($event)"></app-article-card-item>
+                </div>
+            </ng-template>
+            
+        </p-dataView>
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalCount" ></p-paginator>
+    </div>
+</div>
+
+<div class="overlay-container">
+    <div *ngIf="tags.length> 0 && technologies.length > 0">
+        <p-dialog header="Header" [visible]="visible" [modal]="true" [closable]="false" [style]="{ width: '50rem', height: '50rem', maxHeight: '50rem'}"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+            <ng-template pTemplate="header">
+                <div class="">
+                    <h5 class="brown-text-title">Select Tree Tag</h5>
+                    <p class="brown-text-title" style="font-size: 1em;">*selected tag instaly apply to filter</p>
+                </div>
+            </ng-template>
+            <div class="side-container" style="max-height: 50rem;">
+                <section>
+                    <div class="justify-content-center tree-view-container">
+                        <p-toast [baseZIndex]="100" [autoZIndex]="true">
+                            <ng-template let-message pTemplate="headless" let-closeFn="closeFn">
+                                <section class="flex p-3 gap-3 w-full toast-card" style="border-radius: 10px; ">
+                                    <div class="flex flex-column gap-3 w-full">
+                                        <p class="m-0 font-semibold text-base text-brown">{{ message.summary }}</p>
+                                        <p class="m-0 text-base text-700 text-brown">{{ message.detail }}</p>
+                                    </div>
+                                </section>
+                            </ng-template>
+                        </p-toast>
+                        <p-tree [value]="nodes" class="w-full" selectionMode="single" [propagateSelectionUp]="false"
+                            [propagateSelectionDown]="false" [selection]="selectedNodes"
+                            (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"
+                            ></p-tree>
+                    </div>
+                </section>
+            </div>
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-check" (click)="visible = false" label="Close" pAutoFocus [autofocus]="true"></p-button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

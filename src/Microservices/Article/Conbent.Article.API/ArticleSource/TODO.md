@@ -1,0 +1,39 @@
+- [x] Deep Dive into Async Programming 
+	- [x] State machine itvdn
+	- [x] Exceptions 
+- [x] COM
+- [x] WPF Performance
+- [x] WPF Hanadler routing
+- [x] WPF Threading
+- [ ] Synchronization context
+- [ ] Lazy<
+- [ ] WPF UIBound
+- [ ] HangFire
+- [ ] Creation proxy server
+- [ ] Redis for Caching
+- [ ] Patterns
+- [ ] Type scrip intresting
+- [ ] Agular intresting
+- [ ] Patterns - gang four
+- [ ] Advanced Memory Management Delve into memory management techniques beyond the basics, such as understanding garbage collection internals, memory profiling, and optimizing memory usage in .NET applications.
+- [ ] **Reactive Programming with Rx.NET**: Learn about reactive programming paradigms and how to implement them using Reactive Extensions (Rx.NET). Explore asynchronous and event-based programming patterns for handling streams of data.
+- [ ] **Custom Code Generation**: Explore techniques for generating code dynamically at runtime using tools like T4 templates or Roslyn APIs. Learn how to automate repetitive tasks, generate boilerplate code, or create domain-specific languages (DSLs).
+- [ ] **CLR Hosting**: Understand how to host the Common Language Runtime (CLR) within custom applications or processes. Explore scenarios like embedding the CLR in native applications or creating custom runtime environments.
+- [ ] **Application Domain (AppDomain)**: Explore the concept of application domains in .NET and their use cases for isolating and managing application components. Learn about domain-neutral assemblies, domain isolation, and sandboxing.
+- [ ] **Dynamic Language Runtime (DLR)**: Discover the Dynamic Language Runtime, which provides infrastructure for dynamically typed languages on the .NET platform. Learn how to interoperate with dynamic languages like Python or Ruby.
+- [ ] **Parallel Programming with PLINQ and TPL**: Dive deeper into parallel programming techniques using Parallel LINQ (PLINQ) and the Task Parallel Library (TPL). Learn about data parallelism, task scheduling, and coordinating concurrent operations.
+- [ ] **Compiler Services with Roslyn**: Explore the Roslyn compiler platform and its APIs for building custom code analysis, transformation, and refactoring tools. Learn how to programmatically analyze and manipulate C# or VB.NET code.
+- [ ] **Cross-Platform Development with Mono**: Understand how to develop cross-platform .NET applications using the Mono framework. Explore platform-specific considerations, compatibility issues, and best practices for targeting multiple operating systems.
+- [ ] Embedded .NET Development**: Learn about developing .NET applications for embedded systems, IoT devices, or resource-constrained environments. Explore frameworks like .NET NanoFramework or .NET Micro Framework.
+- [ ] **High-Performance Networking**: Explore advanced networking concepts for building high-performance, scalable networked applications in .NET. Learn about asynchronous I/O, socket programming, network protocols, and performance tuning.
+- [ ] **Blockchain Development with .NET**: Understand how to develop blockchain applications using .NET frameworks like Nethereum for Ethereum or Stratis for custom blockchain solutions. Explore smart contract development, blockchain integration, and decentralized applications (DApps).
+- [ ] **Domain-Specific Languages (DSLs)**: Learn about designing and implementing domain-specific languages (DSLs) in .NET. Explore techniques for defining custom syntax, building parsers, and interpreting or compiling DSL code.
+- [ ] **Machine Learning with ML.NET**: Dive into machine learning (ML) development using the ML.NET framework. Learn how to train and deploy machine learning models in .NET applications for tasks like classification, regression, or clustering.
+- [ ] **Functional Programming with F#**: Explore functional programming paradigms using F#, a functional-first programming language on the .NET platform. Learn about immutability, higher-order functions, pattern matching, and asynchronous programming in F#.
+- [ ] **WebAssembly (Wasm) Integration**: Understand how to integrate WebAssembly (Wasm) with .NET applications using frameworks like Blazor. Learn about running .NET code in the browser, sharing code between client and server, and building rich web applications.
+- [ ] **Interoperability with Native Code**: Explore techniques for interop with native code, including Platform Invocation Services (P/Invoke), COM interop, or using third-party libraries like C++/CLI. Learn how to call native code from .NET or vice versa.
+- [ ] YIELD
+- [ ] ENUM FLAGS
+- [ ] DB Indexes
+- [ ] Atributes
+- [ ] 

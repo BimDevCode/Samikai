@@ -1,0 +1,26 @@
+<div class="safety-zone p-2 ">
+  <div class="col-12 z-2">
+    <div class="card p-2 mt-2 ">
+      <div class="col text-center">
+          <h1 class="section-header-title m-0" >
+            Personel Account
+          </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="safety-zone">
+  <div class="col-12 md:col-4 z-2">
+    <div class="col-12">
+      <div class="card">
+        <p-tieredMenu [model]="tieredItems">
+        </p-tieredMenu>
+    </div>
+    </div>
+  </div>
+    <div class="col-12 md:col-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

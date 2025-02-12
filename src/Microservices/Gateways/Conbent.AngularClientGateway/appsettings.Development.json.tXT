@@ -1,0 +1,94 @@
+{
+    "Logging": {
+        "LogLevel": {
+            "Default": "Debug",
+            "Microsoft.AspNetCore": "Warning",
+            "Microsoft": "Information",
+            "Microsoft.Hosting.Lifetime": "Information",
+            "Yarp": "Debug",
+            "System.Net.Http.HttpClient": "Debug"
+        }
+    },
+    "AllowedHosts": "*",
+    "ReverseProxy": {
+        // Routes tell the proxy which requests to forward
+        "Routes": {
+            "article2": {
+                "ClusterId": "article-cluster2",
+                "Match": {
+                    "Path": "/article/{**catch-all}"
+                },
+                "Transforms": [
+                    {
+                        "PathSet": "{**catch-all}"
+                    }
+                ]
+            },
+            "identity": {
+                // matches /something/* and routes to 2 external addresses
+                "ClusterId": "identity-cluster",
+                "Match": {
+                    "Path": "/identity/{**catch-all}"
+                }
+            },
+            "reactions": {
+                // matches /something/* and routes to 2 external addresses
+                "ClusterId": "reactions-cluster",
+                "Match": {
+                    "Path": "/reactions/{**catch-all}"
+                }
+            }
+        },
+        // Clusters tell the proxy where and how to forward requests
+        "Clusters": {
+            "article-cluster": {
+                "Destinations": {
+                    "first_destination": {
+                        "Address": "https://localhost:7069"
+                    },
+                    "another_destination": {
+                        "Address": "https://localhost:7069"
+                    }
+                },
+                "LoadBalancingPolicy": "PowerOfTwoChoices"
+            },
+            "article-cluster2": {
+                "Destinations": {
+                    "first_destination0": {
+                        "Address": "https://localhost:7069"
+                    }
+                },
+                "identity-cluster": {
+                    "Destinations": {
+                        "first_destination1": {
+                            "Address": "http://localhost:5223"
+                        },
+                        "another_destination1": {
+                            "Address": "http://localhost:5223"
+                        }
+                    },
+                    "LoadBalancingPolicy": "PowerOfTwoChoices"
+                },
+                "reactions-cluster": {
+                    "Destinations": {
+                        "first_destination2": {
+                            "Address": "http://localhost:5203"
+                        },
+                        "another_destination2": {
+                            "Address": "http://localhost:5203"
+                        }
+                    },
+                    "LoadBalancingPolicy": "PowerOfTwoChoices"
+                }
+            }
+        },
+        "Redis": {
+            "Configuration": "localhost:6379",
+            "InstanceName": "YarpInstance"
+        }
+    },
+    "Redis": {
+        "Configuration": "localhost:6379",
+        "InstanceName": "YarpInstance"
+    }
+}

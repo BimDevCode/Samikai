@@ -1,0 +1,8 @@
+.custom-divider-zero-margin{
+    ::ng-deep {
+        .p-divider-dashed{
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;   
+        }
+    }
+  }

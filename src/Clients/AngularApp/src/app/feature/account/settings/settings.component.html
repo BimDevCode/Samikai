@@ -1,0 +1,57 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h5>Advanced</h5>
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 ">
+          <label htmlFor="diplayName">Nickname</label>
+          <input pInputText id="diplayName" type="text" (change)="handleChange()"  [(ngModel)]="currentUser!.profile!.nickname">
+        </div>
+        <div class="field col-12 md:col-6">
+          <label htmlFor="name">Name</label>
+          <input pInputText id="name" type="text" (change)="handleChange()"  [(ngModel)]="currentUser!.profile!.given_name">
+        </div>
+        <div class="field col-12 md:col-6">
+          <label htmlFor="surname">Family Name</label>
+          <input pInputText id="surname" type="text" (change)="handleChange()" [(ngModel)]="currentUser!.profile!.family_name">
+        </div>
+      <div class="field col-12">
+        <p-divider/>
+      </div>
+      <div class="field col-12">
+        <label htmlFor="gender">Gender</label>
+        <input pInputText id="gender" type="text" (change)="handleChange()" [(ngModel)]="currentUser!.profile!.gender">
+      </div>
+
+      <div class="field col-12">
+        <label htmlFor="calendar">Birthday</label>
+        <span class="p-float-label">
+            <p-calendar
+              inputId="calendar"
+              (change)="handleChange()"
+              [(ngModel)]="birthday">
+            </p-calendar>
+          <label for="calendar">Calendar</label>
+        </span>
+      </div>
+      <div class="col-12">
+        <p-divider/>
+      </div>
+      <div class="field col-12">
+        <label htmlFor="mail">Mail</label>
+        <input pInputText id="mail" type="text" (change)="handleChange()" [(ngModel)]="currentUser!.profile!.email">
+      </div>
+      <div class="field col-12">
+        <label htmlFor="adress">Adress</label>
+        <input pInputText id="adress" type="text" (change)="handleChange()" [(ngModel)]="currentUser!.profile!.address">
+      </div>
+      <div class="col-12">
+        <p-divider/>
+      </div>
+      <div class="field col-12">
+        <button pButton pRipple icon="pi pi-save" [disabled]="!isChanged" label="Save Changes" (click)="saveChanges()"></button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

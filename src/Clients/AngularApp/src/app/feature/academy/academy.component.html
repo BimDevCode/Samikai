@@ -1,0 +1,51 @@
+<div class="container-intro">
+  <div class="card mt-4 custom-card">
+    <div class="banner-container">
+      <div class="image-banner">
+        <img src="{{cookbookImage}}" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+  </div>
+  <div class="description-text text-center">
+    <app-card-content class="block" colorBackground="#5b7c99" borderRadius="10,10,10,10"
+      title="CODE COOKBOOK"
+      description="We have compiled some of our notes into a small collection of short cards that we found interesting during the carbon-based learning of material on any technology. Of course, in perfect condition, it was nice to have small blanks on hand for different project situations that could simply be copied into the current project.">
+      </app-card-content>
+  </div>
+</div>
+<div #mainArticleBlock class="safety-zone ">
+  <div #articleBlock class="col-12 md:col-8 custom-zone">
+    <p-breadcrumb class="breadcrumb-component md:d-none" [model]="items" [home]="home"></p-breadcrumb>
+    <div class="card mb-3 pt-2">
+      <div class="mt-1">
+        <div class="row mt-2">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div #aboutBlock class="col-12 md:col-4 custom-zone">
+    <div class="card p-2">
+      <div class="p-4 mb-3 rounded about-posts">
+      <button #aboutHideButton pButton label="{{aboutCollapseButton}}" class="w-full p-2 text-m" (click)="moveAboutToDown()"></button>
+        <h4 class="fst-italic">About Posts</h4>
+        <p class="mb-0" [innerHTML]="'If you would like to actively participate in the development of this or other projects or if you would like to express your opinion directly to the author, please write to conbent.it@gmai.com. Be free in your thinking!'"></p>
+      </div>
+      <!-- <div class="p-4 mb-3 rounded about-posts">
+        <h4 class="fst-italic">Recent posts</h4>
+        <app-article-card-item [article]="itemArticle1"></app-article-card-item>
+        <app-article-card-item [article]="itemArticle2"></app-article-card-item>
+        <app-article-card-item [article]="itemArticle3"></app-article-card-item>
+      </div> -->
+      <div class="p-4">
+        <h4 class="fst-italic m-0">Elsewhere on Social</h4>
+        <div class="flex align-items-center mt-2">
+          <ol class="list-disc">
+            <li> <a class="pi pi-linkedin cursor-pointer mb-2 h-1rem" href="https://www.linkedin.com/in/mikalai-sabaleuski-4584a0208/">&nbsp;Linked In</a></li>
+            <li><a class="pi pi-link cursor-pointer h-1rem" (click)="copyLinkToClipboard($event)">&nbsp;Copy Email</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

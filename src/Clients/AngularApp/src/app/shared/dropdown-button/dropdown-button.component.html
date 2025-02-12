@@ -1,0 +1,10 @@
+<div class="menu-trigger" (click)="isOpen = !isOpen" 
+    #dropDownBox>
+    <i [ngClass]="isOpen ? 'gg-chevron-up' : 'gg-chevron-down'"></i>
+    {{ selectedItem.name }}
+</div>
+<div class="menu" *ngIf="isOpen" [@dropDownMenu]>
+	<div class="menu-item" *ngFor="let item of items;" (click)="selectedItem = item; isOpen = false;" >
+		 {{ item.name }}
+	</div>
+</div>

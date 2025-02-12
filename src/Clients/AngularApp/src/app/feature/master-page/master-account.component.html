@@ -1,0 +1,100 @@
+<div class="safety-zone card p-2 mt-2 z-under-layout">
+    <div class="col text-center">
+        <h1 class="section-header-title m-0" >
+          Contact Account
+        </h1>
+    </div>
+</div>
+<div class="safety-zone z-under-layout">
+  <div class="col-12 z-2">
+    <div class="card">
+        <div class="flex align-items-center">
+            <p-avatar label="{{shortAuthorName}}" styleClass="mr-2 " size="xlarge" shape="circle"></p-avatar>
+            <h1>{{masterUserProfile.name}} {{masterUserProfile.surname}} - Software Engineer</h1>
+        </div>
+        <p-divider/>
+        <div class="w-full">
+            <p-fieldset legend="Personal Information" [toggleable]="true">
+                <div class="flex align-items-center">
+                    <p class="m-1">Dispaly Name:</p>
+                    <p class="m-1">{{masterUserProfile.authorName}}</p>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">Name:</p>
+                    <p class="m-1">{{masterUserProfile.name}}</p>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">Surname:</p>
+                    <p class="m-1">{{masterUserProfile.surname}}</p>
+                </div>
+            </p-fieldset>
+            <p-fieldset legend="Contact Information" styleClass="mt-3" [toggleable]="true">
+                <div class="flex align-items-center">
+                    <p class="m-1">Email:</p>
+                    <p class="m-1" [innerHTML]="'nikolaysobolewskij@gmail.com'"></p>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">Phone:</p>
+                    <p class="m-1" [innerHTML]="'+48512839186'"></p>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">Country:</p>
+                    <p class="m-1" [innerHTML]="'Poland'"></p>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">LinkedIn:</p>
+                    <a class="m-1" href="https://www.linkedin.com/in/mikalai-sabaleuski-4584a0208/">Mikalai Sabaleuski</a>
+                </div>
+                <p-divider/>
+                <div class="flex align-items-center">
+                    <p class="m-1">GitHub:</p>
+                    <a class="m-1" href="https://github.com/BimDevCode/">Mikalai Sabaleuski</a>
+                </div>
+            </p-fieldset>
+        </div>
+    </div>
+    <div class="card">
+        <div class="col text-center">
+            <h1 class="section-header-title m-0" >
+              Linked Artickles
+            </h1>
+        </div>
+        <p-divider/>
+        <div class="w-full">
+            <p-fieldset legend="Authors Artickles" [toggleable]="true">
+                <p-dataView #dv [paginator]="false" [value]="masterUserProfile.articles"layout="list">
+                    <ng-template let-articles pTemplate="listItem">
+                        <div class="col-12" *ngFor="let article of articles; let first = first">
+                            <div class="card p-4">
+                                <a class="w-full h-full cursor-pointer" (click)="onArticleRoute(article)">
+                                    <div class="flex align-items-center">
+                                        <div class="flex-1">
+                                            <p class="inline-block m-0" >Article Id:</p>
+                                            <p class="inline-block ml-1">{{article.id}}</p>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="inline-block m-0">Title Name:</p>
+                                            <p class="inline-block ml-1"> {{article.name}}</p>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="inline-block m-0">Created:</p>
+                                            <p class="inline-block ml-1"> {{article.createDateTime}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-dataView>
+            </p-fieldset>
+        </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,175 @@
+
+
+.section-part{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-for-parts{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.block {
+  flex: 1;
+  min-width: 15rem;
+  box-sizing: border-box;
+}
+
+.section-header{
+  width: 100%;
+  height: 100%;
+}
+.card-content{
+  min-width: 20rem;
+}
+.post-cards{
+  border-radius: 10px;
+  z-index: 0;
+  border: 1px solid var(--background-border-color);
+  background-color: var(--background-complementary-light-color);
+}
+.section-header h1{
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-weight:100;
+  font-size: 26px;
+  font-style: normal;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// .parallax-item{
+//   display: block;
+//   will-change: transform;
+//   animation: fadeIn 1s ease-out;
+//   /* Transition for smooth movement */
+//   transition: transform 1s ease-out;
+//   position:relative;
+//   z-index: 100;
+// }
+
+
+.conteiner-canvas {
+  display: flex;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 95%;
+  height: 95%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+.intro-conteiner {
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+  text-align: center;
+  position: relative;
+  margin-left: auto;
+}
+
+.intro-conteiner-sturtup {
+}
+
+.main-page {
+  height: 600vh
+}
+
+.intro-conteiner-canvas {
+}
+
+.outside {
+  position: relative;
+}
+
+.inside {
+  width: 150%;
+}
+
+.intro-conteiner-slogan {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  left: 10vw;
+  margin: 0;
+  text-align: left;
+  display: block;
+}
+
+.intro-conteiner__maintence {
+  display: flex;
+}
+
+.intro-conteiner-slogan__maintence {
+  color: #FFFAFA;
+  margin: 0;
+  font-family: 'Manrope';
+  font-size: 96px;
+}
+
+.intro-conteiner__about {
+  margin: 0 auto;
+}
+.fade-in-element1 {
+  opacity: 0; 
+}
+.fade-in-element2 {
+  opacity: 0; 
+}
+.intro-conteiner-slogan__about {
+  color: #FFFAFA;
+  margin: 0 auto;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 49px;
+}
+
+.intro-conteiner__by {
+  display: flex;
+}
+
+.intro-conteiner-slogan__by {
+  color: #FFFAFA;
+  margin: 0 0 60px 0;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 54px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-conteiner {
+  position: absolute;
+  bottom: 0px;
+}
+
+.about-conteiner {
+  width: 100%;
+  height: 100vh;
+}
+
+.about-conteiner-content {
+  width: 100%;
+}
+
+.container-about-text__header {
+  color: #FFFAFA;
+  margin: 0;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 49px;
+}
+
+// ____________

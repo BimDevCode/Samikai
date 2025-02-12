@@ -1,0 +1,23 @@
+<link href='https://fonts.googleapis.com/css?family=Lato|Roboto:400,900' rel='stylesheet' type='text/css'>
+
+<div class="basement-container">
+  <!-- class="grain" -->
+  <div>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" class="spinner" size = "medium" color = "#fff" type = "ball-newton-cradle" [fullScreen] = "true">
+      <p style="color: white" > Loading... </p>
+    </ngx-spinner>
+    <p-toast key="prod">
+      <ng-template let-message pTemplate="message">
+          <div class="p-toast-message p-3 mr-2" style="background: var(--surface-card); border-radius: 10px;">
+            <section class="flex p-3 gap-3 w-full toast-card" >
+            <div class="flex  flex-column gap-3 w-full">
+                <p class="m-0 font-semibold text-base text-brown text-wrap">{{ message.summary }}</p>
+                <p class="m-0 text-base text-700 text-brown text-wrap">{{ message.detail }}</p>
+            </div>
+        </section>
+        </div>
+      </ng-template>
+    </p-toast>
+    <router-outlet/>
+  </div>
+</div>

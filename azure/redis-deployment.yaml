@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+    kompose.version: 1.33.0 (3ce457399)
+  labels:
+    io.kompose.service: redis
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: redis
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+        kompose.version: 1.33.0 (3ce457399)
+      labels:
+        io.kompose.network/azure-app-network: "true"
+        io.kompose.service: redis
+    spec:
+      containers:
+        - args:
+            - redis-server
+            - --requirepass
+            - password21
+          env:
+            - name: REDIS_PASSWORD
+              value: password21
+          image: conbentcontainer.azurecr.io/redis:latest
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - -a
+                - password21
+                - ping
+            failureThreshold: 3
+            periodSeconds: 30
+            timeoutSeconds: 10
+          name: redis
+          ports:
+            - containerPort: 6379
+              hostPort: 6379
+              protocol: TCP
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: acr-secret

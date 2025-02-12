@@ -1,0 +1,68 @@
+
+
+.section-header{
+  width: 100%;
+  height: 100%;
+}
+.card-content{
+  min-width: 20rem;
+}
+.card-text{
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+
+  &:last-child {
+      margin-bottom: 0;
+  }
+}
+.section-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  h1{
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+    font-weight:100;
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+    font-style: normal;
+  }
+}
+.block-custom {
+  flex: 1;
+  min-width: 15rem;
+  box-sizing: border-box;
+}
+.section-part{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container-for-parts{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.fade-in-element-left {
+  opacity: 0;
+}
+
+.fade-in-element-right1 {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  .change-order-1 {
+    order: 2;
+
+  }
+  .change-order-2 {
+    order: 1;
+
+  }
+}

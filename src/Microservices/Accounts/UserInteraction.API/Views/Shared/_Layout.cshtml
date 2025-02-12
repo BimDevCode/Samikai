@@ -1,0 +1,49 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+    <title>Identity | Conbent</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.png" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="bg-black">
+    <div class='Conbent-banner'>
+    </div>
+    <div class="Conbent-header ">
+        <div class="Conbent-header-container">
+            <nav class="Conbent-header-navbar">
+                <a href="@Configuration["WebAppClient"]" class='logo '>
+                </a>
+            </nav>
+      </div>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <footer class='Conbent-footer'>
+        <div class='Conbent-footer-content'>
+            <div class='Conbent-footer-row'>
+                <img role="presentation" src='/images/Logo.png' class='logo logo-footer align-content-start align-items-start' />
+                <p>© Conbent</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.slim.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

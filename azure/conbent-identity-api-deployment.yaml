@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+    kompose.version: 1.33.0 (3ce457399)
+  labels:
+    io.kompose.service: conbent-identity-api
+  name: conbent-identity-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: conbent-identity-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.azure.yml
+        kompose.version: 1.33.0 (3ce457399)
+      labels:
+        io.kompose.network/azure-app-network: "true"
+        io.kompose.service: conbent-identity-api
+    spec:
+      containers:
+        - env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: ASPNETCORE_HTTP_PORTS
+              value: "5223"
+            - name: ConnectionStrings__IdentityDB
+              value: Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentUsers;Include Error Detail=true;
+            - name: RABBITMQ_HOST
+              value: rabbitmq
+          image: conbentcontainer.azurecr.io/conbent.identity.api:latest
+          name: conbent-identity-api
+          ports:
+            - containerPort: 5223
+              hostPort: 5223
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /remote_debugger
+              name: conbent-identity-api-cm0
+      restartPolicy: Always
+      volumes:
+        - configMap:
+            name: conbent-identity-api-cm0
+          name: conbent-identity-api-cm0
+      imagePullSecrets:
+      - name: acr-secret

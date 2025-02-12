@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "conbent.article.api": "StartDebugging",
+        "conbent.identity.api": "StartDebugging"
+      }
+    }
+  }
+}

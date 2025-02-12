@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Conbent.IntegrationEventLogEF</RootNamespace>
+    <IsPublishable>false</IsPublishable>
+    <Configurations>Debug;Release;Debug Docker;Debug Service;Debug Consonle;Debug Several Services</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventBus\Conbent.EventBus.csproj" />
+  </ItemGroup>
+
+</Project>

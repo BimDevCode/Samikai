@@ -1,0 +1,41 @@
+@model CreateViewModel
+
+<div class="login-page style=" style="background-color: #1e1e1e; rounded-2">
+    <div class="container">
+        <div class="row top-buffer">
+                <div class="col"></div>
+                <div class="col-sm-6">
+                    <form asp-route="Create">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="login-container rounded-2 " style="background-color: #1e1e1e;">
+                            <h2>Create</h2>
+                            <partial name="_ValidationSummary" />
+
+                            <div class="form-group">
+                                <label asp-for="Username"></label>
+                                <input class="form-control  rounded-2 " placeholder="Username" asp-for="Username" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password"></label>
+                                <input type="password" class="form-control  rounded-2 " placeholder="Password" asp-for="Password" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Name"></label>
+                                <input type="text" class="form-control rounded-2" placeholder="Name" asp-for="Name">
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email"></label>
+                                <input type="email" class="form-control rounded-2" placeholder="Email" asp-for="Email" >
+                            </div>
+
+                            <div>
+                                <p>The default users are alice/bob, password: Pass123$</p>
+                            </div>
+                            <button class="btn btn-primary rounded-2 " name="button" value="create">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col"></div>
+        </div>
+    </div>
+</div>

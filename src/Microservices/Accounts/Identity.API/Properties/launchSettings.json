@@ -1,0 +1,19 @@
+{
+    "profiles": {
+        "http": {
+            "commandName": "Project",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5223"
+            }
+        },
+        "Container (Dockerfile)": {
+            "commandName": "Docker",
+            "launchBrowser": false,
+            "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+            "environmentVariables": {
+                "ASPNETCORE_HTTP_PORTS": "5223"
+            }
+        }
+    }
+}

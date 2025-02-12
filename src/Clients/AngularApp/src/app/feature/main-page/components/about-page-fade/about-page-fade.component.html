@@ -1,0 +1,54 @@
+<div class="container ">
+  <div class="container-for-parts">
+    <div class="row">
+      <div class="col text-center" >
+        <h1 class="section-header-title m-4" >
+          OUR SERVICES
+        </h1>
+      </div>
+    </div>
+    <div class="row card-text">
+      <span class="fflex text-justify text-xl text-white font-light">
+        &nbsp;&nbsp;&nbsp;&nbsp;We provide software development service that in a result of our work streamline project management, enhance collaboration, and improve efficiency in construction processes. Our applications are designed to support the unique needs of the construction industry, from planning and design to execution and maintenance.
+      </span>
+    </div>
+    <div class="row">
+        <div class="section-part">
+          <div class="col">
+             <div class="block-custom section-header ">
+              <h1>WEB DEVELOPMENT</h1>
+            </div>
+          </div>
+          <app-card-content class="block-custom  fade-in-element-right" colorBackground="#5b7c99"  appIntersectionObserver (intersectionVisible)="fadeInOnScrollRight($event)"
+          description="Our web development team builds powerful and scalable applications using .NET and Angular. We focus on creating seamless user experiences while maintaining rigorous security protocols to protect your data.">
+          </app-card-content>
+
+        </div>
+        <div class="section-part ">
+          <app-card-content class="block-custom fade-in-element-left change-order-1 mt-2"
+          appIntersectionObserver (intersectionVisible)="fadeInOnScrollLeft($event)"
+          description="For desktop solutions, we utilize Windows Presentation Foundation (WPF) to develop sophisticated and user-friendly applications for Windows. Our desktop apps are designed to enhance productivity and streamline workflows in your business operations.">
+          </app-card-content>
+          <div class="col">
+            <div class="block-custom section-header change-order-2">
+              <h1>DESKTOP DEVELOPMENT</h1>
+           </div>
+         </div>
+        </div>
+        <!-- <div class="row">
+        </div> -->
+        <div class="section-part">
+          <div class="col">
+            <div class="block-custom section-header">
+              <h1>AUTODESK API INTERATION</h1>
+           </div>
+         </div>
+          <app-card-content class="block-custom  fade-in-element-right1 mt-2" colorBackground="#5b7c99"  appIntersectionObserver (intersectionVisible)="fadeInOnScrollRight1($event)"
+          description="We offer specialized development services using the Autodesk Revit API, Autodesk Forge, and Autodesk Application Platform Service API. Our solutions integrate seamlessly with Autodesk tools, providing enhanced functionality and interoperability for your design and construction projects.">
+          </app-card-content>
+        </div>
+    </div>
+
+  </div>
+
+</div>

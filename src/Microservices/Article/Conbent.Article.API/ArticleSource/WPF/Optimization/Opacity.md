@@ -1,0 +1,5 @@
+#ConbentDesktopProject 
+#### Definition
+When you use a [Brush](https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.brush) to set the [Fill](https://learn.microsoft.com/en-us/dotnet/api/system.windows.shapes.shape.fill) or [Stroke](https://learn.microsoft.com/en-us/dotnet/api/system.windows.shapes.shape.stroke) of an element, it is better to set the [Brush.Opacity](https://learn.microsoft.com/en-us/dotnet/api/system.windows.media.brush.opacity) value rather than the setting the element's [Opacity](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.opacity) property. Modifying an element's [Opacity](https://learn.microsoft.com/en-us/dotnet/api/system.windows.uielement.opacity) property can cause WPF to create a temporary surface.
+#### Source Link
+https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/optimizing-performance-other-recommendations?view=netframeworkdesktop-4.8

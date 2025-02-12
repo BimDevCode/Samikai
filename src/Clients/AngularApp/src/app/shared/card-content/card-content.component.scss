@@ -1,0 +1,77 @@
+.card-rectangle{
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  padding: 32px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: justify;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out; /* adjust duration and easing function as needed */
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+}
+
+.card-rectangle__title{
+  font-weight:normal;
+  color: white;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+
+  &:empty {
+    display: none;
+  }
+}
+.grain {
+  height: 100%;
+  width: 100%;
+  transform: translateZ(0);
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    border-radius: 10px; // adjust as needed
+    overflow: hidden;
+    opacity: 0.15;
+    //-webkit-animation: noise 1s steps(2) infinite;
+    //animation: noise 1s steps(2) infinite;
+  }
+
+  @-webkit-keyframes noise {
+    to { transform: translate3d(-1rem,0,0) }
+  }
+
+  @keyframes noise {
+    0% { transform: translate3d(0,1rem,0) }
+    10% { transform: translate3d(-1rem,-1rem,0) }
+    20% { transform: translate3d(-1rem,1rem,0) }
+    30% { transform: translate3d(1rem,-1rem,0) }
+    40% { transform: translate3d(-1rem,1rem,0) }
+    50% { transform: translate3d(-1rem,-1rem,0) }
+    60% { transform: translate3d(1rem,1rem,0) }
+    70% { transform: translate3d(1rem,-1rem,0) }
+    80% { transform: translate3d(-1rem,1rem,0) }
+    90% { transform: translate3d(1rem,-1rem,0) }
+    to { transform: translate3d(-1rem,0,0) }
+  }
+}
+
+
+.card-rectangle__description{
+  font-size: 18px;
+  text-justify: inter-word;
+  font-weight: normal;
+  color: white;
+}

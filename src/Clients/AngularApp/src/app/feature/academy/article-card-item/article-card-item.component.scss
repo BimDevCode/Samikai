@@ -1,0 +1,104 @@
+
+
+.bg-main{
+    margin: 0;
+    padding-left: 1px;
+    padding-right: 1px;
+    background-color: var(--app-primary-color);
+}
+.academy-card{
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        scale: 1.02;
+    }
+}
+.card-body{
+    border-radius: 10px 0px 10px 10px;
+    background-color: var(--app-primary-color);
+}
+.button-r{
+    display: flex;
+    justify-content: center;
+}
+.read-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    button{
+        color: var(--app-primary-color);
+        &:hover{
+            border: 1px solid var(--app-primary-color);
+        }
+    }
+ 
+}
+
+.custom-button{
+    background-color: var(--app-primary-color);
+    color: var(--brown-color-dark);
+    border-radius: 10px;
+    margin-right: 1em;
+    justify-self: end;
+    font-size: 16px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s  ease-in-out;
+    &:hover{
+        background-color: var(--brown-color-dark);
+        color: var(--app-primary-color);
+        border: 1px solid var(--app-primary-color);
+    }
+  }
+  
+  .tag-button {
+    pointer-events: auto;
+  }
+
+.card-title{
+    color: white;
+    font-size: 28px;
+}
+
+.relevant-text{
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+.text-preview{
+    height: 3rem; /* Adjust as needed */
+    overflow: hidden;
+    text-overflow:clip;
+}
+
+.text-part{
+    h1{
+        font-size: 1em !important;
+    }
+}
+.card-row{
+}
+.image-banner{
+    overflow: hidden;
+    height: 10em; border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  img{
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+    object-fit: contain; 
+  }
+}
+.custom-divider{
+    ::ng-deep {
+        .p-divider-dashed{
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;   
+        }
+    }
+  }

@@ -1,0 +1,98 @@
+
+.menu-trigger {
+    text-align: center;
+    cursor: pointer;
+    color: var(--app-primary-color);
+    padding: 10px;
+    display: flex;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+
+    background-color: var(--green-color) ;
+
+    i {
+        left: 0;
+    }
+  }
+  
+.menu {
+    border-bottom: 1px solid  var(--app-primary-color);
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 10px;
+    background: var(--green-color);
+}
+
+.menu-item {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--app-primary-color);
+    max-width: 300px;
+    margin: auto;
+    width: 100%;
+    color: var(--app-primary-color);
+    cursor: pointer;
+    .menu-item:last-child {
+        border-bottom: none;
+    }
+    &:hover {
+        background-color: var(--green-color-dark) ;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s  ease-in-out;
+        &:last-child {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+          }
+      }
+
+}
+
+.gg-chevron-up {
+    box-sizing: border-box;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+}
+.gg-chevron-up::after {
+content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(-45deg);
+    left: 4px;
+    bottom: 2px;
+}
+
+.gg-chevron-down {
+    box-sizing: border-box;
+    position: relative;
+    transform: scale(var(--ggs, 1));
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+}
+
+.gg-chevron-down::after {
+content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(45deg);
+    left: 4px;
+    top: 2px;
+}

@@ -1,0 +1,106 @@
+apiVersion: v1
+data:
+  docker-compose.azure.yml: |2-
+    services:
+      postgresql:
+        image: conbentcontainer.azurecr.io/postgres:latest
+        restart: always
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Tootyfrooty99
+        ports:
+          - "5432:5432"
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+        networks:
+          - app-network
+
+      redis:
+        image: conbentcontainer.azurecr.io/redis:latest
+        ports:
+          - "6379:6379"
+        networks:
+          - app-network
+        environment:
+          - REDIS_PASSWORD=password21
+        command: ["redis-server", "--requirepass", "password21"]
+        healthcheck:
+          test: ["CMD", "redis-cli", "-a", "password21", "ping"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+
+      conbent.article.api:
+        image: conbentcontainer.azurecr.io/conbent.article.api:latest
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+          - ConnectionStrings__DefaultConnection=Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentArticles;Include Error Detail=true;
+          - ASPNETCORE_HTTPS_PORTS=7069
+          - ASPNETCORE_URLS=https://+:7069;
+          - RABBITMQ_HOST=rabbitmq
+          - ConnectionStrings__RedisConnection=redis:6379,password=password21
+          - ASPNETCORE_Kestrel__Certificates__Default__Path=/src/cert/conbentapp.pfx
+          - ASPNETCORE_Kestrel__Certificates__Default__Password=ConbentPassword
+        depends_on:
+          - postgresql
+          - redis
+        ports:
+          - "7069:7069"
+        volumes:
+          - ${APPDATA}/.aspnet/https:/root/.aspnet/https:ro
+          - ~/.vsdbg:/remote_debugger:rw
+          - storage:/storage
+          - /var/run/docker.sock:/tmp/docker.sock:ro
+          - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+          - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        networks:
+          - app-network
+        healthcheck:
+          test: ["CMD", "curl", "-k", "-f", "https://localhost:7069/health"]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+
+      conbent.identity.api:
+        image: conbentcontainer.azurecr.io/conbent.identity.api:latest
+        environment:
+          - ConnectionStrings__IdentityDB=Host=postgresql;Port=5432;UserId=postgres;Password=Tootyfrooty99;Database=ConbentUsers;Include Error Detail=true;
+          - ASPNETCORE_ENVIRONMENT=Development
+          - RABBITMQ_HOST=rabbitmq
+          - ASPNETCORE_HTTP_PORTS=5223
+        depends_on:
+          - postgresql
+        ports:
+          - "5223:5223"
+        volumes:
+          - ~/.vsdbg:/remote_debugger:rw
+          - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+        networks:
+          - app-network
+
+      angular-app:
+        image: conbentcontainer.azurecr.io/angular-app:latest
+        ports:
+          - "5211:5211"
+        volumes:
+          - .:/app
+          - /app/node_modules
+        environment:
+          - NODE_ENV=development
+          - CHOKIDAR_USEPOLLING=true
+        networks:
+          - app-network
+
+    networks:
+      app-network:
+        driver: bridge
+
+    volumes:
+      storage:
+      postgres_data:
+        driver: local
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: angular-app
+  name: angular-app-cm0

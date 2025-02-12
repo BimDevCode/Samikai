@@ -1,0 +1,222 @@
+
+@media (max-width: 1000px) {
+  .navbar-expand-lg {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: block;
+  }
+}
+
+@media (min-width: 1000px) {
+  .navbar-expand-lg {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: row;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: none;
+  }
+}
+
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets.
+
+*/
+.btn {
+  z-index: 1;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  height: 2.5em;
+  width: 7em;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration:none;
+}
+
+.btn-dark {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  height: 2.5em;
+  width: 7em;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration:none;
+}
+.btn svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+.btn-dark svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  //stroke: #EC0033;
+  stroke-width: 2;
+  stroke-dasharray: 80, 124;
+  stroke-dashoffset: 80;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  width: 100%;
+  height: 100%;
+  stroke-linecap: round;
+  -webkit-transition: all 1000ms ease;
+  transition: all 1000ms ease;
+}
+.btn-dark svg rect {
+  //stroke: #EC0033;
+  fill: rgb(255, 255, 255, 0);
+  stroke-width: 2;
+  stroke-dasharray: 80, 144;
+  stroke-dashoffset: 80;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  width: 100%;
+  height: 100%;
+  stroke-linecap: round;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.btn:hover svg rect {
+  stroke-width: 2;
+  stroke-dasharray: 80,0,144,0,80;
+  stroke-dashoffset: 0;
+}
+
+.btn-dark:hover svg rect {
+  // --brown-color: #1F493D;
+  stroke-width: 2;
+  stroke-dasharray: 80,0,144,0,80;
+  stroke-dashoffset: 0;
+  fill: var(--brown-color);
+}
+
+.btn svg text{
+  font-family: 'Sintony', sans-serif;
+  font-size: 16px;
+  fill: var(--app-primary-color);
+  font-weight: 200;
+}
+
+.btn-dark svg text{
+  font-family: 'Sintony', sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  fill: var(--app-primary-color);
+}
+
+.btn-dark:hover svg text{
+  fill: var(--app-primary-color);
+}
+:host{
+  position: sticky;
+  z-index: 2;
+  top: 0;}
+
+.navbar-custom{
+  top: 0;
+  padding-bottom: 0.5em;
+  border-radius: 10px;
+  z-index: 1;
+}
+.grain-nav {
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+
+  background-color:var(--app-primary-color) ;
+
+  &:before {
+    content: "";
+    z-index: 1;
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    border-radius: 10px; // adjust as needed
+    overflow: hidden;
+    opacity: 0.10;
+    //-webkit-animation: noise 1s steps(2) infinite;
+    //animation: noise 1s steps(2) infinite;
+  }
+
+
+}
+.btn{
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+.btn.active {
+  border-radius: 10px;
+  background-color: var(--surface-ground);
+  border: 0px;
+}
+
+.company-name{
+  position: relative;
+  z-index: 1;
+  color: var(--app-primary-color);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-size: 2rem;
+}
+
+.custom-border-bottom{
+  border-bottom: 1px solid var(--brown-color);
+}
+
+.toast-custom{
+  position: absolute;
+  height: 10rem;
+  width: 100%;
+}

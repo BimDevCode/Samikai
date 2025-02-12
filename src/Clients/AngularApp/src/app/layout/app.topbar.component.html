@@ -1,0 +1,199 @@
+<div class="layout-topbar" style="height: auto">
+  <button
+    #menubutton
+    class="p-link layout-menu-button layout-topbar-button m-0"
+    (click)="layoutService.onMenuToggle()"
+  >
+    <i class="pi pi-bars"></i>
+  </button>
+  <div #topbarmenu class="text-center" class="layout-topbar-menu">
+    <div class="row">
+      <nav class="navbar-expand-lg">
+        <div class="flex flex-row justify-content-center m-3 gap-3">
+          <div class="flex flex-row text-center  gap-3" style="padding-bottom: 0">
+            <a
+              class="nav-item nav-link link-body-emphasis btn button-active"
+              routerLink="/project"
+              style="margin-right: 0.5rem"
+              routerLinkActive="active"
+            >
+              <svg>
+                <defs>
+                  <linearGradient id="grad1">
+                    <stop offset="0%" stop-color="var(--green-color-light)" />
+                    <stop offset="100%" stop-color="var(--green-color-light)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0%"
+                  y="0%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  rx="10"
+                  ry="10"
+                  fill="none"
+                  stroke="url(#grad1)"
+                ></rect>
+                <text
+                  x="50%"
+                  y="50%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                >
+                  Projects
+                </text>
+              </svg>
+            </a>
+            <a
+              class="nav-item nav-link link-body-emphasis btn button-active"
+              routerLink="/project"
+              style="margin-right: 0.5rem"
+              routerLinkActive="active"
+            >
+              <svg>
+                <defs>
+                  <linearGradient id="grad1">
+                    <stop offset="0%" stop-color="var(--green-color-light)" />
+                    <stop offset="100%" stop-color="var(--green-color-light)" />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0%"
+                  y="0%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  rx="10"
+                  ry="10"
+                  fill="none"
+                  stroke="url(#grad1)"
+                ></rect>
+                <text
+                  x="50%"
+                  y="50%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                >
+                  Data
+                </text>
+              </svg>
+            </a>
+          </div>
+          <div class="text-center">
+            <a
+              routerLink=""
+              routerLinkActive="active"
+              class="navbar-brand company-name"
+              href="#"
+            >
+              CONBENT
+            </a>
+          </div>
+          <div class="flex flex-row text-center gap-3" style="padding-bottom: 0">
+            <a
+              class="nav-item nav-link link-body-emphasis btn button-active"
+              routerLink="/academy"
+              style="margin-left: 0.5rem"
+              routerLinkActive="active"
+            >
+              <svg>
+                <defs>
+                  <linearGradient id="grad1">
+                    <stop offset="0%" stop-color="var(--green-color-light)" />
+                    <stop
+                      offset="100%"
+                      stop-color="#var(--green-color-light)"
+                    />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0%"
+                  y="0%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  rx="10"
+                  ry="10"
+                  fill="none"
+                  stroke="url(#grad1)"
+                ></rect>
+                <text
+                  x="50%"
+                  y="50%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                >
+                  Articles
+                </text>
+              </svg>
+            </a>
+            <a
+              class="nav-item nav-link link-body-emphasis btn button-active"
+              routerLink="/master-account"
+              style="margin-left: 0.5rem"
+              routerLinkActive="active"
+            >
+              <svg>
+                <defs>
+                  <linearGradient id="grad1">
+                    <stop offset="0%" stop-color="var(--green-color-light)" />
+                    <stop
+                      offset="100%"
+                      stop-color="#var(--green-color-light)"
+                    />
+                  </linearGradient>
+                </defs>
+                <rect
+                  x="0%"
+                  y="0%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  rx="10"
+                  ry="10"
+                  fill="none"
+                  stroke="url(#grad1)"
+                ></rect>
+                <text
+                  x="50%"
+                  y="50%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                >
+                  Contact
+                </text>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <button
+    #topbarmenubutton
+    class="p-link layout-topbar-menu-button layout-topbar-button"
+    (click)="layoutService.showProfileSidebar()"
+  >
+    <i class="pi pi-ellipsis-v"></i>
+  </button>
+
+  <div
+    #topbarmenu
+    class="layout-topbar-menu"
+    [ngClass]="{
+      'layout-topbar-menu-mobile-active':
+        layoutService.state.profileSidebarVisible
+    }"
+  >
+    <!-- <button *ngIf="currentUser === null" class="p-link layout-topbar-button" (click)="onLogin()">
+            <i class="pi pi-sign-in"></i>
+            <span>Sign In</span>
+        </button>
+        <button *ngIf="currentUser !== null" class="p-link layout-topbar-button" routerLink="account">
+            <i class="pi pi-user"></i>
+            <span>Account</span>
+        </button> -->
+    <!-- <button *ngIf="currentUser !== null" class="p-link layout-topbar-button" (click)="onLogout()">
+            <i class="pi pi-sign-out"></i>
+            <span>Logout</span>
+        </button> -->
+  </div>
+</div>

@@ -1,0 +1,70 @@
+
+<div class="container">
+  <div
+    class="py-4 text-left border-round flex flex-column justify-content-end mb-2"
+    style="background-color: var(--surface-card);">
+    <div class="text-5xl font-bold text-white">{{articleName}}</div>
+    <div>
+      <p class=" text-lg text-center md:text-left mt-2 mb-1 inline-block">Published</p>
+      <p class="text-white text-lg text-center md:text-left mt-2 mb-1 ml-2 inline-block">{{createDateTime}}</p>
+      <p class=" text-lg text-center md:text-left mt-2 mb-1 ml-2 inline-block">by</p>
+    </div>
+    <app-account-chip [authorNameSurname]="article!.authorNameSurname"/>
+    <div class="flex align-items-center gap-4 mt-4">
+      <a class="pi pi-linkedin cursor-pointer ml-1" href="https://www.linkedin.com/in/mikalai-sabaleuski-4584a0208/" ></a>
+      <a class="pi pi-link cursor-pointer" (click)="copyLinkToClipboard($event)"></a>
+    </div>
+    <div class="flex flex-wrap align-items-start justify-content-start mt-5 mb-2">
+      <div class="flex " *ngFor="let tag of tagNames">
+        <a (click)="onTagSelected(tag)" class="cursor-pointer">
+          <span class="text-900 surface-100 inline-flex font-semibold py-2 px-3 m-1 border-round" [innerHTML]="tag" ></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-12" *ngFor="let contentBlock of this.contentBlocks">
+      <ng-container *ngIf="contentBlock.type === 'Text'">
+        <app-text-paragraph [text]="contentBlock.content"/>
+      </ng-container>
+      <ng-container *ngIf="contentBlock.type === 'CodeSnippet'">
+        <app-copy-code [code]="contentBlock.content" [codeLanguage]="contentBlock.codeLanguage" />
+      </ng-container>
+      <p-divider class="custom-divider"/>
+    </div>
+</div>
+<div class="px-5 grid">
+  <div class="flex p-3 w-full">
+    <button class="p-link align-items-center justify-content-end text-white" (click)="onLiked()" ><!--  [class.text-white]="currentUser !== null" [class.text-grey]="currentUser === null" [disabled]="currentUser === null" -->
+      <span class="font-semibold mr-2 cursor-pointer">{{likeCount}}</span>
+      <i class="pi pi-heart cursor-pointer"></i>
+    </button>
+    <button class="p-link ml-2 align-items-center justify-content-end text-white" (click)="onDisliked()" >
+      <span class="font-semibold mr-2 cursor-pointer">{{dislikeCount}}</span>
+      <i class="pi pi-ban cursor-pointer"></i>
+    </button>
+    <button class="p-link ml-2 align-items-center justify-content-end">
+      <span class="font-semibold mr-2 cursor-auto">{{commentCount}}</span>
+      <i class="pi pi-comments cursor-auto"></i>
+    </button>
+  </div>
+
+  <div class="flex justify-content-between w-full pt-3 pb-3">
+    <div class="cursor-pointer" *ngIf="isPreviousExist">
+      <button pButton pRipple class="p-button-text" style="text-align: left;">
+        <a routerLink="/academy/{{_previousId}}" class="w-full h-full">
+          <i class="pi pi-arrow-left"></i>
+          <span class="font-bold ml-2 " [innerText]="_previousName"></span>
+        </a>
+      </button>
+    </div>
+    <div class="cursor-pointer" *ngIf="isNextExist">
+      <button pButton pRipple class="p-button-text" style="text-align: right;">
+        <a routerLink="/academy/{{_nextId}}" class="w-full h-full">
+          <span class="font-bold mr-2 " [innerText]="_nextName"></span>
+          <i class="pi pi-arrow-right"></i>
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<app-comment [article]="this.article" *ngIf="this.article" [(commentsCount)]="commentCount"></app-comment>

@@ -1,0 +1,28 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7069
+                }
+            ],
+            "UpstreamPathTemplate": "/article/{everything}"
+        },
+        {
+            "DownstreamPathTemplate": "/article/api/articles/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7109
+                }
+            ],
+            "UpstreamPathTemplate": "/api/articles/{everything}",
+            "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+            "DangerousAcceptAnyServerCertificateValidator": true
+        }
+    ]
+}

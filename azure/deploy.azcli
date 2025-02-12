@@ -1,0 +1,84 @@
+docker login conbentcontainer.azurecr.io
+az login --tenant 503a2690-02a0-4173-84d3-0b8b4fd19a69
+#####_____Resource_Group Conbent
+#####_____https://github.com/kubernetes/kompose
+#####__________Windows: choco install kubernetes-kompose
+#####__________Mac: brew install kompose
+
+docker build -t angular-app:v4 -f src/Clients/AngularApp/Dockerfile .
+docker tag angular-app:v4 conbentcontainer.azurecr.io/angular-app:v4
+docker push conbentcontainer.azurecr.io/angular-app:v4
+docker pull conbentcontainer.azurecr.io/angular-app:v4
+
+#####_____Push images to Azure Container Registry_____#####
+$ACR_LOGIN_SERVER="conbentcontainer.azurecr.io"
+
+# Tag and push PostgreSQL image
+docker tag postgres:latest $ACR_LOGIN_SERVER/postgres:latest
+docker push $ACR_LOGIN_SERVER/postgres:latest
+
+# Tag and push Redis image
+docker tag redis:latest $ACR_LOGIN_SERVER/redis:latest
+docker push $ACR_LOGIN_SERVER/redis:latest
+
+# Build, tag, and push conbent.article.api image
+docker build -t conbent.article.api:latest -f src\Microservices\Article\Conbent.Article.API\Dockerfile .
+docker tag conbent.article.api:latest $ACR_LOGIN_SERVER/conbent.article.api:latest
+docker push $ACR_LOGIN_SERVER/conbent.article.api:latest
+
+# Build, tag, and push conbent.identity.api image
+docker build -t conbent.identity.api:latest -f src\Microservices\Accounts\Identity.API\Dockerfile .
+docker tag conbent.identity.api:latest $ACR_LOGIN_SERVER/conbent.identity.api:latest
+docker push $ACR_LOGIN_SERVER/conbent.identity.api:latest
+
+# Build, tag, and push angular-app image
+docker build -t angular-app:latest -f src\Clients\AngularApp\Dockerfile .
+docker tag angular-app:latest $ACR_LOGIN_SERVER/angular-app:latest
+docker push $ACR_LOGIN_SERVER/angular-app:latest
+
+# Pull PostgreSQL image
+docker pull $ACR_LOGIN_SERVER/postgres:latest
+
+# Pull Redis image
+docker pull $ACR_LOGIN_SERVER/redis:latest
+
+# Pull conbent.article.api image
+docker pull $ACR_LOGIN_SERVER/conbent.article.api:latest
+
+# Pull conbent.identity.api image
+docker pull $ACR_LOGIN_SERVER/conbent.identity.api:latest
+
+# Pull angular-app image
+docker pull $ACR_LOGIN_SERVER/angular-app:latest
+
+#####_____Deploy images to Azure Kubernetes Service_____#####
+
+az aks create --resource-group Conbent --name ConbentCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys
+az aks get-credentials --resource-group Conbent --name ConbentClusterv ###always invoke on new machine
+az aks install-cli
+
+#####_____ Get Kubernetes Secret 
+azure\KubernetesSecret.ps1
+#####_____ Compose YAML
+kompose convert -f docker-compose.azure.yml
+#####_____ Pull Kubernetes 
+azure\KubernetesPull.ps1
+
+kubectl get services
+
+az network public-ip create --resource-group Conbent --name kubernetes-a8beba389a11d4d39abee351b211db73
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=example.com/O=example.com"
+kubectl create secret tls tls-secret --key tls.key --cert tls.crt
+kubectl delete pod angular-app-5788c95754-8fw2f
+
+kubectl apply -f azure/angular-app-claim1-persistentvolumeclaim.yaml 
+kubectl apply -f azure/angular-app-cm0-configmap.yaml 
+kubectl apply -f azure/angular-app-deployment.yaml 
+kubectl apply -f azure/angular-app-ingress.yaml 
+kubectl apply -f azure/angular-app-service.yaml 
+
+kubectl set image deployment/angular-app angular-app=conbentcontainer.azurecr.io/angular-app:latest
+kubectl rollout status deployment/angular-app
+
+kubectl get deployment angular-app -o yaml > angular-app-deployment.yaml

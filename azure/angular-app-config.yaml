@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: angular-app-config
+data:
+  API_URL: "http://10.0.0.1/api/"
+  BASE_ARTICLE_URL: "http://10.0.0.1/"
+  STS_AUTHORITY: "http://10.0.0.2/"
+  CLIENT_ROOT: "http://your-client-root/"
+  API_ROOT: "http://10.0.0.1/api"

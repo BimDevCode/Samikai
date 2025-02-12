@@ -1,0 +1,41 @@
+<div class="col-12">
+    <div class="card mb-3">
+        <div class="mt-1">
+        <div class="row mt-2">
+            By commenting you are helping the community get their opinions heard.<br>
+            On this page we display all the comments you have left.<br>
+            In the future we will add deleting comments and rating them.
+        </div>
+        </div>
+    </div>
+</div>
+<div class="col-12">
+    <div class="card">
+        <div class="z-under-layout">
+            <div class="mb-6">
+                <div class="z-under-layout" >
+                    <ul class="list-none m-0 p-0 comment" *ngFor="let comment of comments$ | async" >
+                        <li class="surface-border">
+                            <div class="flex align-items-center justify-content-between mb-3">
+                                <div class="flex align-items-center">
+                                    <div class="flex flex-column">
+                                        <span ><app-account-chip authorNameSurname="{{comment?.author != '' ?comment.author: 'Undefined Author' }}"/></span>
+                                        <small class="mt-2">Created At</small>
+                                        <span class="text-800 font-medium text-sm">({{comment.createdAt | date:'short' }})</span>
+                                        <small class="mt-2">Article Name</small>
+                                        <span class="text-800 font-medium text-sm">{{comment.postName != '' ?comment.postName: 'Undefined Article' }}</span>
+                                        <small class="row mt-2">Comment</small>
+                                        <span class="row text-800 font-medium text-sm">{{comment.content!= '' ?comment.content: 'Undefined Content' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </li>
+                        <p-divider type="dashed" class="custom-divider-zero-margin"></p-divider>
+                    </ul>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+

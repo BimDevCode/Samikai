@@ -1,0 +1,194 @@
+
+.conteiner-canvas {
+  text-align: center;
+  margin: 0;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.describe{
+  margin-top: 6rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 4rem;
+  & h1{
+    font-family: "Montserrat";
+    font-size: 28px;
+    font-weight: 300;
+  }
+}
+
+.intro-conteiner {
+  padding: 0;
+  height: 40em;
+  text-align: center;
+  display: flex;
+  position: relative;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+
+}
+
+.section-header-title{
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif /*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-size: 2rem;
+}
+
+.intro-conteiner-slogan {
+  width: 40%;
+  align-items: end;
+  height: fit-content;
+  text-align: end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* From https://css.glass */
+  background: rgba(247, 245, 241, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.9px);
+  -webkit-backdrop-filter: blur(6.9px);
+  border: 1px solid rgba(247, 245, 241, 0.42);
+  padding: 2em;
+  text-align: left;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .canvas-dots{
+    display: none;
+  }
+}
+.canvas-dots{
+  top:10%;
+  height: 80%;
+  z-index: -2;
+  left: 8%;
+  position: absolute;
+  border-radius: 10px;
+  width: 80%;
+  display: block;
+  background-color: var(--surface-card);
+}
+
+.intro-conteiner-slogan__about {
+  color: var(--app-primary-color);
+  border-radius: 10px;
+  margin: 0em;
+}
+
+.text_about{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  line-height: 46px;
+  text-align: start;
+  text-wrap: wrap;
+  text-overflow:initial;
+  font-size: 32px;
+  color: var(--app-primary-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  font-style: normal;
+}
+
+.bottom-conteiner {
+  position: absolute;
+  bottom: 0px;
+}
+
+.about-conteiner-content {
+  width: 100%;
+}
+
+.container-about-text__header {
+  color: black;
+  margin: 0;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 49px;
+}
+
+
+
+.animated-container {
+  display:inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  div {
+  color: #fff;
+  text-align: left;
+  font-size: 2.8em;
+  font-family: "Montserrat";
+  &::before{
+    justify-content:left;
+    align-items:left;
+  }
+}
+
+}
+.card-rectangle{
+  padding: 1.6em;
+  margin: 0px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  z-index: -1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: justify;
+  border-radius: 10px;
+  background-color: var(--blue-color);
+
+  @media (max-width: 767px) {
+    width: 100% !important;
+  }
+}
+
+.grain {
+  width: 50%;
+  transform: translateZ(0);
+  position: relative;
+  content: "";
+  position: absolute;
+  background-color: var(--blue-color);
+
+  top: 0;
+
+
+  &:before {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Image_gaussian_noise_example.png);
+    border-radius: 10px; // adjust as needed
+    overflow: hidden;
+    opacity: 0.15;
+  }
+
+  @-webkit-keyframes noise {
+    to { transform: translate3d(-1rem,0,0) }
+  }
+
+  @keyframes noise {
+    0% { transform: translate3d(0,1rem,0) }
+    10% { transform: translate3d(-1rem,-1rem,0) }
+    20% { transform: translate3d(-1rem,1rem,0) }
+    30% { transform: translate3d(1rem,-1rem,0) }
+    40% { transform: translate3d(-1rem,1rem,0) }
+    50% { transform: translate3d(-1rem,-1rem,0) }
+    60% { transform: translate3d(1rem,1rem,0) }
+    70% { transform: translate3d(1rem,-1rem,0) }
+    80% { transform: translate3d(-1rem,1rem,0) }
+    90% { transform: translate3d(1rem,-1rem,0) }
+    to { transform: translate3d(-1rem,0,0) }
+  }
+}
+
+

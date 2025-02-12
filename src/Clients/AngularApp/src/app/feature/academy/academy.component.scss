@@ -1,0 +1,122 @@
+
+
+.overlay-container {
+    position: relative;
+    border: 0;
+    border-radius: 10px;
+  }
+
+.overlay {
+  position: absolute; /* Position the overlay relative to the container */
+  top: 0; /* Align to the top of the container */
+  left: 0; /* Align to the left of the container */
+  width: 100%; /* Cover the full width of the container */
+  height: 100%; /* Cover the full height of the container */
+}
+.custom-zone{
+  max-width: 980px;
+  margin: 0 auto;
+}
+.center-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.expanded {
+    width: 18em;
+}
+//End todo
+.button-square{
+  z-index: 0;
+  position: absolute;
+}
+
+.custom-button-onlight-reward{
+  background-color: var(--green-color);
+  color: var(--app-primary-color);
+  border-radius: 10px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s  ease-in-out;
+  &:hover{
+      background-color: var(--app-primary-color);
+      color: var(--green-color);
+      border: 1px solid var(--green-color);
+
+  }
+  &:active{
+      background-color: var(--green-color-dark);
+  }
+}
+.custom-button-light{
+  background-color: var(--app-primary-color);
+  color: var(--green-color-dark);
+  border-radius: 10px;
+  text-decoration: underline;
+  margin-bottom: 0px;
+  font-size: 16px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s  ease-in-out;
+  &:hover{
+      border: 1px solid var(--green-color);
+
+  }
+}
+
+::ng-deep .p-breadcrumb{
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
+.breadcrumb-component{
+
+}
+.container-intro{
+  margin-bottom: 2em;
+
+
+}
+.custom-card{
+  padding-bottom: 6em;
+}
+.description-text{
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: -12em;
+
+  z-index: 1;
+  width: 80%;
+}
+.vertical-alignment{
+  margin-bottom: 1rem;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 2rem;
+}
+.float-right{
+  float: left;
+  margin-left: 1rem;
+}
+
+.image-banner{
+  width: 100%;
+  height: 50rem;
+  margin-top: -30rem;
+  margin-bottom: 1em;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.banner-container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
